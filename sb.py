@@ -16,6 +16,13 @@ client = Boteater(my_app='ios_ipad', server="sg") ## Change server to jp if use 
 
 ## NOTE ##
 # Lib dan SC belom 100% jadi, SC berantakan karena buru-buru silahkan rapihin dan edit sesuka hati
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
 
 
 temporary = {"autorespond" : [],
@@ -1140,7 +1147,7 @@ def my_worker(op):
                     client.post_audio(to,temporary["unsend"][msg_id]["link"])
                     client.send_message(to,temporary["unsend"][msg_id]["text"])
                 print("[ OP ] Detectunsend")
-def run():
+def xxrun():
     while True:
         try:
             ops = client.pool.fetchOps(client.last_op, 5, client.last_op, client.last_op)
@@ -1154,4 +1161,5 @@ def run():
             print(e)
 
 if __name__ == "__main__":
-    run()
+    xxrun()
+    app.run()
